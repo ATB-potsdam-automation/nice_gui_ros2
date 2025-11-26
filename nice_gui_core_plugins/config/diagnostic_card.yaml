@@ -1,0 +1,14 @@
+/**: 
+    ros__parameters:
+        pages:
+            - main_page
+        main_page:
+            name: main page
+            url: "/"
+            cards:
+                - GPSInfoCard
+            GPSInfoCard:
+                name: GPS Info
+                type: GPSInfoCard
+                gps_topics:
+                    - /gps/fix

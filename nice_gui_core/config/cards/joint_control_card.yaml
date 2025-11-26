@@ -1,0 +1,36 @@
+/**: 
+    ros__parameters:
+        pages:
+            - main_page
+        main_page:
+            name: main page
+            url: "/"
+            cards:
+                - JointControlCard
+            JointControlCard:
+                name: Joint Control
+                type: JointControlCard
+                joints:
+                    - motor_right
+                    - motor_left
+                    - motor_top
+                motor_right:
+                    min: 0.02
+                    max: 0.26
+                    step_size: 0.01
+                    init: 0.02
+                motor_left:
+                    min: 0.02
+                    max: 0.26
+                    step_size: 0.01
+                    init: 0.02
+                motor_top:
+                    min: 0.03
+                    max: 0.7
+                    step_size: 0.01
+                    init: 0.03
+                time_from_start:
+                    min: 0.2
+                    max: 5.0
+                    step_size: 0.1
+                    init: 1.0

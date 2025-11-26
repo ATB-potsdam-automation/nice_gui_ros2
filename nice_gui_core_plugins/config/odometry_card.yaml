@@ -1,0 +1,20 @@
+/**: 
+    ros__parameters:
+        pages:
+            - main_page
+        main_page:
+            name: main page
+            url: "/"
+            cards:
+                - OdometryCard
+            OdometryCard:
+                name: Odometry
+                type: OdometryCard
+                topic: "/odom"
+                plot:
+                    min_y: -0.01
+                    max_y: 0.2
+                    update_every: 2
+                    limit_number: 20
+                min_vel_x: 0.02
+                max_vel_x: 0.15

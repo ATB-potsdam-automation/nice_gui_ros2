@@ -1,0 +1,18 @@
+/**: 
+    ros__parameters:
+        pages:
+            - main_page
+        main_page:
+            name: main page
+            url: "/"
+            cards:
+                - ControlCard
+            ControlCard:
+                name: Control
+                type: ControlCard
+                cmd_vel_topic: "/cmd_vel"
+                max_speed:
+                    linear: 1.0
+                    angular: 1.0
+                    linear_turbo: 2.0
+                    angular_turbo: 2.0

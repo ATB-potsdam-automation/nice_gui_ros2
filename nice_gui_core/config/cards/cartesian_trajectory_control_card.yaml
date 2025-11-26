@@ -1,0 +1,13 @@
+/**: 
+    ros__parameters:
+        pages:
+            - main_page
+        main_page:
+            name: main page
+            url: "/"
+            cards:
+                - CartesianTrajectoryControlCard
+            CartesianTrajectoryControlCard:
+                name: Cartesian Trajectory Control
+                type: CartesianTrajectoryControlCard
+                folder_path: /workspace/data/nice_gui/cartesian_trajectory_control

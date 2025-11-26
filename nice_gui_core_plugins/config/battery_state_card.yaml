@@ -1,0 +1,13 @@
+/**: 
+    ros__parameters:
+        pages:
+            - main_page
+        main_page:
+            name: main page
+            url: "/"
+            cards:
+                - BatteryStateCard
+            BatteryStateCard:
+                name: Battery
+                type: BatteryStateCard
+                topic: "/battery_status"

@@ -1,0 +1,14 @@
+/**: 
+    ros__parameters:
+        pages:
+            - main_page
+        main_page:
+            name: main page
+            url: "/"
+            cards:
+                - LinkCard
+            LinkCard:
+                name: Link Card
+                type: LinkCard
+                links:
+                  - main_page

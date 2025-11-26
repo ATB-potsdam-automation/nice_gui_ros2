@@ -1,0 +1,16 @@
+/**: 
+    ros__parameters:
+        pages:
+            - main_page
+        main_page:
+            name: main page
+            url: "/"
+            cards:
+                - ImageCard
+            ImageCard:
+                name: Image
+                type: ImageCard
+                topic: "/camera/image_raw"
+                compressed: false
+                scale: 2
+                frequency: 10

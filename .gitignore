@@ -1,0 +1,6 @@
+__pycache__/
+**.cpython-*
+**.pyc
+**.pyo
+**.pyd
+**.so

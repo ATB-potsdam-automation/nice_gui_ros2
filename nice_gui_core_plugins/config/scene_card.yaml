@@ -1,0 +1,12 @@
+/**: 
+    ros__parameters:
+        pages:
+            - main_page
+        main_page:
+            name: main page
+            url: "/"
+            cards:
+                - SceneCard
+            SceneCard:
+                name: Scene
+                type: SceneCard
