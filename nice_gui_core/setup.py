@@ -20,10 +20,6 @@ setup(
             os.path.join("share", package_name, "config"),
             glob(os.path.join("config", "*.[yaml]*")),
         ),
-        (
-            os.path.join("share", package_name, "config/cards"),
-            glob(os.path.join("config/cards", "*.[yaml]*")),
-        ),
     ],
     install_requires=["setuptools"],
     zip_safe=True,
