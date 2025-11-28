@@ -27,9 +27,9 @@ setup(
     ],
     install_requires=["setuptools"],
     zip_safe=True,
-    maintainer="ros",
-    maintainer_email="tschuette@atb-potsdam.de",
-    description="TODO: Package description",
+    maintainer="Daniel Suhr",
+    maintainer_email="dsuhr@atb-potsdam.de",
+    description="Core package for Nice GUI",
     license="TODO: License declaration",
     tests_require=["pytest"],
     entry_points={

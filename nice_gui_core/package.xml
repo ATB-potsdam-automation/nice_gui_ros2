@@ -3,9 +3,9 @@
 <package format="3">
   <name>nice_gui_core</name>
   <version>0.0.1</version>
-  <description>TODO: Package description</description>
-  <maintainer email="tschuette@atb-potsdam.de">ros</maintainer>
-  <maintainer email="dsuhr@atb-potsdam.de">ros</maintainer>
+  <description>Core package for Nice GUI</description>
+  <maintainer email="tschuette@atb-potsdam.de">Tjark Schütte</maintainer>
+  <maintainer email="dsuhr@atb-potsdam.de">Daniel Suhr</maintainer>
   <license>TODO: License declaration</license>
 
   <test_depend>ament_copyright</test_depend>
