@@ -10,6 +10,9 @@ Define the entire application using YAML: pages, cards, actions, services, and s
 ### Plugin-Based Architecture
 Each plugin provides a set of **cards**, keeping the codebase clean, modular, and dependency-light.
 
+### Minimal ROS Footprint
+Each plugin and card subscribes, publishes, or calls services only when necessary. The application maintains a minimal number of subscribers, publishers, and timers to reduce overhead and improve performance.
+
 ### Cards
 Self-contained UI components (e.g., control panels, battery indicators). Each card represents exactly one functional unit.
 
