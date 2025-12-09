@@ -27,3 +27,36 @@ Define multi-step workflows using actions and services. Transitions are based on
 
 ### Unified Logging
 ROS2 and NiceGUI logs are combined, enabling clear visibility from the GUI or the ROS2 logging system. The NiceGUI log can be hidden when desired.
+
+## Getting Started
+
+### Running the Example with Docker Compose
+
+To quickly get started with a working example, you can use Docker Compose to build and run the application:
+
+1. **Build the Docker image:**
+   ```bash
+   docker compose build
+   ```
+
+2. **Start the application:**
+   ```bash
+   docker compose up
+   ```
+
+3. **Access the web interface:**
+   Open your browser and navigate to `http://localhost` (or the host where you're running the container)
+
+The example application includes:
+- **Battery State Card**: Displays battery status information
+- **Image Card**: Shows camera feed from `/camera/image_raw` topic
+- **Scene Card**: Provides a 3D scene visualization
+- **GPS Info Card**: Displays GPS information from `/fix` topic
+- **Diagnostic Card**: Shows system diagnostics
+- **Navigation**: Links between different pages
+
+The application will be accessible on port 80 and includes two pages:
+- Main page (`/`) with battery, camera, scene, and navigation cards
+- Secondary page (`/secondary`) with GPS info, diagnostics, and navigation
+
+**Note:** The Docker container runs in host network mode, so make sure the required ROS2 topics are available on your system for full functionality.
