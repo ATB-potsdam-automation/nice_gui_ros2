@@ -21,6 +21,7 @@
             SceneCard:
                 name: Scene
                 type: SceneCard
+                gps_topic: /fix
             LinkCard:
                 name: Links
                 type: LinkCard

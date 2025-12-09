@@ -10,3 +10,4 @@
             SceneCard:
                 name: Scene
                 type: SceneCard
+                gps_topic: /fix

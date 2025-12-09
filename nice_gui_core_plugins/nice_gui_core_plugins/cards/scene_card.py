@@ -1,8 +1,9 @@
 from geopandas import GeoDataFrame
 from nice_gui_core.cards import Card
-from nice_gui_core.utils import SubscriberHandler
+from nice_gui_core.utils import SubscriberHandler, get_parameter
 from nicegui import ui
 from rclpy.node import Node
+from rclpy.parameter import Parameter
 from sensor_msgs.msg import NavSatFix
 
 
@@ -11,10 +12,11 @@ class SceneCard(Card):
     def __init__(self, node: Node, param_prefix: str) -> None:
         super().__init__(node, param_prefix)
         self.lat = self.lon = None  # GPS coordinates
+        gps_topic: str = get_parameter(
+            node, param_prefix + ".gps_topic", Parameter.Type.STRING
+        ).string_value
         self._client_handler.add_subscriber(
-            SubscriberHandler(
-                node, NavSatFix, "/rover/gps_node/fix", self.update_gps_position
-            )
+            SubscriberHandler(node, NavSatFix, gps_topic, self.update_gps_position)
         )
 
     def create_card(self) -> None:

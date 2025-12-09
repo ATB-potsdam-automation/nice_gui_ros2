@@ -142,8 +142,8 @@ This ROS2 package provides a collection of core UI cards for building robot moni
 - Center-on-robot functionality
 - Configurable map center and options
 
-**Subscribed Topics**:
-- `/rover/gps_node/fix`: GPS fix data for robot positioning
+**Configuration Parameters**:
+- `gps_topic`: GPS topic to subscribe to
 
 ## Installation and Usage
 
