@@ -19,7 +19,7 @@ class SceneCard(Card):
 
     def create_card(self) -> None:
         super().create_card()
-        with ui.card().classes("w-300 h-300 text-center items-center"):
+        with ui.card().classes("max-w-300 max-h-300 text-center items-center"):
             options = {}  # See https://leafletjs.com/reference.html#map-option
             self.m = ui.leaflet(center=(51.505, -0.09), options=options).classes(
                 "w-96 h-96"

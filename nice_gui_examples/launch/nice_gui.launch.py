@@ -16,7 +16,7 @@ def generate_launch_description():
     config_file = LaunchConfiguration("config_file")
 
     config_directory = os.path.join(
-        get_package_share_directory("nice_gui_core"), "config"
+        get_package_share_directory("nice_gui_examples"), "config"
     )
     config_file_launch_arg = DeclareLaunchArgument(
         "config_file", default_value=os.path.join(config_directory, "default.yaml")

@@ -32,7 +32,7 @@ class GPSInfoCard(Card):
 
     def create_card(self):
         super().create_card()
-        with ui.card().classes("w-96 h-110 items-center"):
+        with ui.card().classes("max-w-96 max-h-110 items-center"):
             ui.label(self._name).classes("text-2xl")
             self.ui_list = ui.list().props("bordered separator")
             with self.ui_list:

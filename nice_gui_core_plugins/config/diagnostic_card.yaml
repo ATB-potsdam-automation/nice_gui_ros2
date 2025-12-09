@@ -6,9 +6,8 @@
             name: main page
             url: "/"
             cards:
-                - GPSInfoCard
-            GPSInfoCard:
-                name: GPS Info
-                type: GPSInfoCard
-                gps_topics:
-                    - /gps/fix
+                - DiagnosticCard
+            DiagnosticCard:
+                name: Diagnostics
+                type: DiagnosticCard
+

@@ -1,0 +1,14 @@
+services:
+  nice_gui:
+    build:
+      dockerfile: Dockerfile
+    network_mode: host
+    ipc: host
+    environment:
+      RMW_IMPLEMENTATION: rmw_cyclonedds_cpp
+      USE_SIM_TIME: False
+      NICEGUI_PORT: 80
+      NICEGUI_RELOAD: False
+      NICEGUI_TITLE: "Example"
+    restart: unless-stopped
+    command: ros2 launch nice_gui_examples nice_gui.launch.py

@@ -1,0 +1,52 @@
+/**: 
+    ros__parameters:
+        pages:
+            - main_page
+            - secondary_page
+        main_page:
+            name: main page
+            url: "/"
+            cards:
+                - BatteryStateCard
+                - ImageCard
+                - SceneCard
+                - LinkCard
+            ImageCard:
+                name: Camera View
+                type: ImageCard
+                topic: "/camera/image_raw"
+                compressed: false
+                scale: 2
+                frequency: 10
+            SceneCard:
+                name: Scene
+                type: SceneCard
+            LinkCard:
+                name: Links
+                type: LinkCard
+                links: 
+                    - secondary_page
+            BatteryStateCard:
+                name: Battery
+                type: BatteryStateCard
+                topic: "/battery_status"
+        secondary_page:
+            name: secondary page
+            url: "/secondary"
+            cards:
+                - GpsInfoCard
+                - DiagnosticCard
+                - LinkCard
+            DiagnosticCard:
+                name: Diagnostics
+                type: DiagnosticCard
+            GpsInfoCard:
+                name: GPS Information
+                type: GPSInfoCard
+                gps_topics:
+                    - /fix
+            LinkCard:
+                name: Links
+                type: LinkCard
+                links: 
+                    - main_page

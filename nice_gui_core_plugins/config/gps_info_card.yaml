@@ -1,1 +1,14 @@
-/workspace/src/nice_gui/nice_gui_core/nice_gui_core_plugins/config/diagnostic_card.yaml
+/**: 
+    ros__parameters:
+        pages:
+            - main_page
+        main_page:
+            name: main page
+            url: "/"
+            cards:
+                - GPSInfoCard
+            GPSInfoCard:
+                name: GPS Information
+                type: GPSInfoCard
+                gps_topics:
+                    - /fix
