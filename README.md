@@ -60,3 +60,40 @@ The application will be accessible on port 80 and includes two pages:
 - Secondary page (`/secondary`) with GPS info, diagnostics, and navigation
 
 **Note:** The Docker container runs in host network mode, so make sure the required ROS2 topics are available on your system for full functionality.
+
+## Creating a New NiceGUI Plugin
+
+### Plugin Structure
+
+NiceGUI plugins follow a standard ROS2 package structure with these key components:
+
+- `package.xml` - ROS2 package definition with dependencies
+- `setup.py` - Python package setup with entry points for card registration
+- `nice_gui_plugin_<name>/cards/` - Card implementations inheriting from `Card` base class
+- `config/` - YAML configuration files for cards
+- Optional: `action_clients/` and `service_clients/` directories
+
+### Creating a Plugin
+
+1. **Create ROS2 package** with `nice_gui_core` dependency
+2. **Implement card classes** that inherit from `nice_gui_core.cards.card.Card`
+3. **Register cards** in `setup.py` entry points under `"nice_gui.cards"`
+4. **Add YAML configurations** for your cards in the `config/` directory
+5. **Build with colcon** and source the workspace
+
+### Usage
+
+Add your cards to any NiceGUI application configuration:
+
+```yaml
+MyCustomCard:
+    name: "My Custom Card"
+    type: MyCustomCard
+    # Your parameters here
+```
+
+### Best Practices
+
+- Inherit from `Card` base class and call `super().create_card()`
+- Use `self._logger` for consistent logging
+- Provide example YAML configurations
