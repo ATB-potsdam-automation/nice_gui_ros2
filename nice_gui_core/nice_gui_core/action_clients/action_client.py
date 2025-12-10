@@ -14,12 +14,6 @@ class ActionClient:
     This class provides a simple interface for sending goals to ROS2 action servers.
     It gives a certain structure to the action clients used in NiceGUI. It is callback based,
     so the user does not need to wait for the action to finish and the ui stays responsive.
-
-    Args:
-        node (Node): the ROS2 node
-        logger (Logger): the logger instance
-        action_type (Type): the action type, e.g. FollowJointTrajectory
-        action_name (str): the action name, e.g. joint_trajectory_controller/follow_joint_trajectory
     """
 
     def __init__(

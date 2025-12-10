@@ -6,7 +6,14 @@ from rclpy.parameter import Parameter
 
 
 class LinkCard(Card):
+    """Class for Link Card"""
+
     def __init__(self, node: Node, param_prefix: str):
+        """Initialize the Link Card
+        Args:
+            node (Node): the ROS2 node
+            param_prefix (str): the parameter prefix for this card
+        """
         super().__init__(node, param_prefix)
         self._links = get_parameter(
             node, param_prefix + ".links", Parameter.Type.STRING_ARRAY
@@ -25,13 +32,21 @@ class LinkCard(Card):
             self._link_names.append(link_name)
 
     def create_card(self):
+        """Create the Link Card layout"""
         super().create_card()
         with ui.card().classes("w-44 items-center"):
             ui.label(self._name).classes("text-2xl")
             for link_name, url in zip(self._link_names, self._link_urls):
                 self.navigate(link_name, url)
 
-    def navigate(self, link_name, url):
+    def navigate(self, link_name: str, url: str) -> ui.button:
+        """Create a button that navigates to the specified URL
+        Args:
+            link_name (str): The display name of the link
+            url (str): The URL to navigate to
+        Returns:
+            ui.button: The created button UI element
+        """
         return ui.button(
             link_name,
             on_click=lambda: ui.navigate.to(url),

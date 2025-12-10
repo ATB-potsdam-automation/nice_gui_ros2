@@ -14,6 +14,11 @@ class ImageCard(Card):
     """A NiceGUI card that subscribes to a ROS2 image topic and displays it interactively."""
 
     def __init__(self, node: Node, param_prefix: str):
+        """Initialize the Image Card
+        Args:
+            node (Node): the ROS2 node
+            param_prefix (str): the parameter prefix for this card
+        """
         super().__init__(node, param_prefix)
 
         topic = get_parameter(
@@ -58,7 +63,10 @@ class ImageCard(Card):
             self._update_image(img)
 
     def _image_callback(self, msg: Image) -> None:
-        """Handle uncompressed image messages."""
+        """Handle uncompressed image messages.
+        Args:
+            msg (Image): the latest image message
+        """
         if msg.header.stamp == self._last_stamp:
             return
         self._last_stamp = msg.header.stamp
@@ -86,7 +94,10 @@ class ImageCard(Card):
             self._update_image(img)
 
     def _update_image(self, img: np.ndarray):
-        """Convert image to base64 and trigger UI update."""
+        """Convert image to base64 and trigger UI update.
+        Args:
+            img (np.ndarray): the image array
+        """
         if self._scale > 1:
             img = img[
                 :: self._scale, :: self._scale
@@ -111,4 +122,5 @@ class ImageCard(Card):
     def _refresh_image(self):
         """Update image in the UI only when new data is available."""
         if self._image_base64:
+            self.video_image.set_source(f"data:image/jpeg;base64,{self._image_base64}")
             self.video_image.set_source(f"data:image/jpeg;base64,{self._image_base64}")

@@ -13,12 +13,24 @@ STATUS_MAP = {
 
 
 def status_to_string(status_value: int) -> str:
+    """Convert battery status value to string
+    Args:
+        status_value (int): the battery status value
+    Returns:
+        str: the battery status as a string
+    """
     return STATUS_MAP.get(status_value, f"INVALID({status_value})")
 
 
 class BatteryStateCard(Card):
+    """Class for Battery State Card"""
 
     def __init__(self, node: Node, param_prefix: str) -> None:
+        """Initialize the Battery State Card
+        Args:
+            node (Node): the ROS2 node
+            param_prefix (str): the parameter prefix for this card
+        """
         super().__init__(node, param_prefix)
         self._battery_state = BatteryState()
         topic = get_parameter(
@@ -29,6 +41,7 @@ class BatteryStateCard(Card):
         )
 
     def create_card(self) -> None:
+        """Create the Battery State Card layout"""
         super().create_card()
         with ui.card().classes("w-54 text-center items-center"):
             ui.label(self._name).classes("text-2xl")
@@ -37,6 +50,7 @@ class BatteryStateCard(Card):
                 self.create_table()
 
     def create_table(self):
+        """Create the table to display battery state information"""
         columns = [
             {
                 "name": "name",
@@ -60,6 +74,7 @@ class BatteryStateCard(Card):
         self._table = ui.table(columns=columns, rows=self._table_rows, row_key="name")
 
     def update_table(self):
+        """Update the table with the latest battery state information"""
         # self._table_rows[0]['value'] = status_to_string(self._battery_state.power_supply_status)
         self._table_rows[0]["value"] = f"{100 * self._battery_state.percentage:.2f}%"
         self._table_rows[1]["value"] = f"{self._battery_state.voltage:.2f}"
@@ -69,5 +84,9 @@ class BatteryStateCard(Card):
         self._table.update_rows(self._table_rows)
 
     def update_values(self, msg: BatteryState):
+        """Update the battery state values and refresh the table
+        Args:
+            msg (BatteryState): the latest battery state message
+        """
         self._battery_state = msg
         self.update_table()

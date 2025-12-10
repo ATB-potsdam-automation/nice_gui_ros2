@@ -12,7 +12,14 @@ from rclpy.parameter import Parameter
 
 
 class GridVisualizationCard(Card):
+    """Class for Grid Visualization Card"""
+
     def __init__(self, node: Node, param_prefix: str):
+        """Initialize the Grid Visualization Card
+        Args:
+            node (Node): the ROS2 node
+            param_prefix (str): the parameter prefix for this card
+        """
         super().__init__(node, param_prefix)
         self.robot_3d = None
         self._scene = None
@@ -35,13 +42,22 @@ class GridVisualizationCard(Card):
             )
 
     def odom_callback(self, msg: Odometry) -> None:
+        """Callback function for odometry data
+        Args:
+            msg (Odometry): the latest odometry data
+        """
         self._odom = msg
         self.handle_pose(msg)
 
     def path_callback(self, msg: Path) -> None:
+        """Callback function for path data
+        Args:
+            msg (Path): the latest path data
+        """
         self.draw_path(msg)
 
     def create_card(self):
+        """Create the Grid Visualization Card layout"""
         super().create_card()
         with ui.card().classes("w-96 h-110 items-center"):
             ui.label(self._name).classes("text-2xl")
@@ -66,12 +82,20 @@ class GridVisualizationCard(Card):
             )
 
     def draw_path(self, path: Path | None):
+        """Draw the path in the 3D scene
+        Args:
+            path (Path | None): the path to draw, or None to delete the path
+        """
         if path is None:
             self._path.delete()
         else:
             self._path.draw(path)
 
     def handle_pose(self, msg: Odometry) -> None:
+        """Handle the robot pose update
+        Args:
+            msg (Odometry): the latest odometry data
+        """
         if self.robot_3d:
             self.robot_3d.move(msg.pose.pose.position.x, msg.pose.pose.position.y)
             self.robot_3d.rotate(
@@ -81,6 +105,7 @@ class GridVisualizationCard(Card):
             )
 
     def center_on_robot(self) -> None:
+        """Center the camera on the robot position"""
         if self._odom is None:
             self._logger.warn("No robot position available")
             return
@@ -95,4 +120,6 @@ class GridVisualizationCard(Card):
         y = self._odom.pose.pose.position.y
         # Subtract a small number from the y component, otherwise the camera rotation vector seems not to be clear
         # and the viewing angle on the robot rotates by 90 degree from time to time.
+        self._scene.move_camera(x=x, y=y - 0.01, look_at_x=x, look_at_y=y, duration=0)
+        self._scene.move_camera(x=x, y=y - 0.01, look_at_x=x, look_at_y=y, duration=0)
         self._scene.move_camera(x=x, y=y - 0.01, look_at_x=x, look_at_y=y, duration=0)

@@ -8,18 +8,27 @@ from sensor_msgs.msg import NavSatFix
 
 
 class SceneCard(Card):
+    """Class for Scene Card displaying GPS data on a map"""
 
     def __init__(self, node: Node, param_prefix: str) -> None:
+        """Initialize the Scene Card
+        Args:
+            node (Node): the ROS2 node
+            param_prefix (str): the parameter prefix for this card
+        """
         super().__init__(node, param_prefix)
         self.lat = self.lon = None  # GPS coordinates
-        gps_topic: str = get_parameter(
+        self._gps_topic: str = get_parameter(
             node, param_prefix + ".gps_topic", Parameter.Type.STRING
         ).string_value
         self._client_handler.add_subscriber(
-            SubscriberHandler(node, NavSatFix, gps_topic, self.update_gps_position)
+            SubscriberHandler(
+                node, NavSatFix, self._gps_topic, self.update_gps_position
+            )
         )
 
     def create_card(self) -> None:
+        """Create the Scene Card layout"""
         super().create_card()
         with ui.card().classes("max-w-300 max-h-300 text-center items-center"):
             options = {}  # See https://leafletjs.com/reference.html#map-option
@@ -42,25 +51,36 @@ class SceneCard(Card):
             ui.timer(interval=1.0, callback=lambda: self.update_position())
 
     def update_gps_position(self, msg: NavSatFix) -> None:
+        """Update GPS position from NavSatFix message
+        Args:
+            msg (NavSatFix): The latest GPS message
+        """
         self.lat = msg.latitude
         self.lon = msg.longitude
 
     def update_position(self) -> None:
+        """Update the marker position on the map"""
         if self.lat and self.lon:
             self.marker.move(self.lat, self.lon)
 
     def center_on_robot(self) -> None:
+        """Center the map on the robot's current GPS position"""
         if self.lat and self.lon:
             self.m.center = (self.lat, self.lon)
             self.m.zoom = 18
         else:
-            msg = "No GPS data available"
-            self._logger.warn(msg)
+            self._logger.warn(f"No GPS data available. Check topic {self._gps_topic}")
 
     def draw_geo_data_frame(self, data: GeoDataFrame) -> None:
-        # Create a geojson object
+        """Draw GeoDataFrame data on the map
+        Args:
+            data (GeoDataFrame): The geospatial data to display
+        """
         geojson_data = data.__geo_interface__
-        # Display the data on the map
         self.m.center = (data.total_bounds[1], data.total_bounds[0])
         self.m.generic_layer(name="geoJSON", args=[geojson_data])
+        self.m.zoom = 16
+        self.m.zoom = 16
+        self.m.zoom = 16
+        self.m.zoom = 16
         self.m.zoom = 16

@@ -11,10 +11,14 @@ CARD_PLUGINS = load_plugins("nice_gui.cards")
 
 
 class PageWithCards:
+    """Class for NiceGUI pages with cards"""
 
     def __init__(self, node: Node, page_name: str) -> None:
-
-        # Init cards
+        """Initialize the NiceGUI page with cards
+        Args:
+            node (Node): the ROS2 node
+            page_name (str): the page name
+        """
         self.card_names = get_parameter(
             node, page_name + ".cards", Parameter.Type.STRING_ARRAY
         ).string_array_value
@@ -48,6 +52,10 @@ class PageWithCards:
                 self._emergency_stop_handler.create_notification()
 
     def create_page(self, client: Client) -> None:
+        """Create the NiceGUI page layout with cards
+        Args:
+            client (Client): the NiceGUI client
+        """
         with ui.header().classes("items-center justify-between bg-white p-2 shadow-md"):
             # Left logo
             ui.image("/static/logo_atb_detail.png").classes(

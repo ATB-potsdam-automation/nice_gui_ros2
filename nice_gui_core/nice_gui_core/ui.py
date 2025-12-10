@@ -12,6 +12,7 @@ from rclpy.parameter import Parameter
 
 
 class NiceGuiNode(Node):
+    """ROS2 node for NiceGUI"""
 
     def __init__(self) -> None:
         super().__init__("nicegui")

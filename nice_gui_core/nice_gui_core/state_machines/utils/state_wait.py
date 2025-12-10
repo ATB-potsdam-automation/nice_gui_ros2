@@ -5,6 +5,11 @@ from rclpy.node import Node
 
 class StateWait:
     def __init__(self, node: Node, wait_time: float = 1.0):
+        """Initialize the wait state machine
+        Args:
+            node (Node): the ROS2 node
+            wait_time (float): the wait time in seconds
+        """
         self._node = node
         self._wait_time = wait_time
         self._timer_wait = None

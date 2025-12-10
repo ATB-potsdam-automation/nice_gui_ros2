@@ -11,7 +11,14 @@ from sensor_msgs.msg import NavSatFix
 
 
 class GPSInfoCard(Card):
+    """Class for GPS Info Card"""
+
     def __init__(self, node: Node, param_prefix: str):
+        """Initialize the GPS Info Card
+        Args:
+            node (Node): the ROS2 node
+            param_prefix (str): the parameter prefix for this card
+        """
         super().__init__(node, param_prefix)
 
         gps_subscriber_topics: List[str] = get_parameter(
@@ -27,10 +34,16 @@ class GPSInfoCard(Card):
             self._ui_navsatfix_handler.append(ui_navsatfix)
 
     def gps_callback(self, msg: NavSatFix, ui_navsatfix: UINavSatFix) -> None:
+        """Callback function for GPS data
+        Args:
+            msg (NavSatFix): the latest GPS data
+            ui_navsatfix (UINavSatFix): the UI handler for this GPS topic
+        """
         ui_navsatfix.update_value(msg)
         self.update_ui()
 
     def create_card(self):
+        """Create the GPS Info Card layout"""
         super().create_card()
         with ui.card().classes("max-w-96 max-h-110 items-center"):
             ui.label(self._name).classes("text-2xl")
@@ -38,9 +51,9 @@ class GPSInfoCard(Card):
             with self.ui_list:
                 for ui_handler in self._ui_navsatfix_handler:
                     ui_handler.create_ui()
-                    # Create initial entries
 
     def update_ui(self):
+        """Update the GPS Info Card UI"""
         with self._client_handler.get_client():
             for ui_handler in self._ui_navsatfix_handler:
                 ui_handler.update_ui()
