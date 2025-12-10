@@ -152,4 +152,3 @@ class EmergencyStopHandler:
         self._emergency_stop_button_triggered.set_tooltip_text(
             self._emergency_stop_message
         )
-        )
